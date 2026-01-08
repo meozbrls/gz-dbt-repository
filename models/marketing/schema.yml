@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: gz_raw_data
+    schema: gz_raw_data
+    tables:
+      - name: raw_gz_adwords
+      - name: raw_gz_bing
+      - name: raw_gz_criteo
+      - name: raw_gz_facebook
+
+models:
+  - name: int_campaigns
+    description: "All paid marketing campaigns combined from 4 sources (adwords, bing, criteo, facebook)."
+    columns:
+      - name: date_date
+        tests: [not_null]
+      - name: paid_source
+        tests: [not_null]
+      - name: campaign_key
+        tests: [not_null]
+      - name: campaign_name
+        tests: [not_null]
+      - name: ads_cost
+        tests: [not_null]
+
+  - name: int_campaigns_day
+    description: "Daily aggregation of marketing campaigns."
+    columns:
+      - name: date
+        tests: [not_null]
+      - name: ads_cost
+        tests: [not_null]
